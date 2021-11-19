@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* override tailwind input svg */
 [type='radio']:checked {
     background-image: none !important;
 }
