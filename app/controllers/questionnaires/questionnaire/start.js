@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import Ember from 'ember';
 
 export default class QuestionnairesQuestionnaireStartController extends Controller {
   /** keeping track of the current number */
@@ -29,7 +30,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
   /** css class for the slider to slide left or right based on the current question number */
   @tracked
-  sliderClass = 'transform: translate3d(0%, 0, 0)';
+  sliderClass = Ember.String.htmlSafe('transform: translate3d(0%, 0, 0)');
 
   /** main function that controls the slider*/
   slideToQuestion(qNumber) {
@@ -38,7 +39,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       return;
     }
     this.currentQuestionNumber = qNumber;
-    this.sliderClass = `transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`;
+    this.sliderClass = Ember.String.htmlSafe(`transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`);
   }
 
   /** function to jump to any question number ahead to current question number */
