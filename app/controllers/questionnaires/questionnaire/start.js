@@ -12,6 +12,10 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @tracked
   answers = {};
 
+  /** variable to hold error message */
+   @tracked
+   error = "";
+
   /** since its possible to jump we need to keep track of the answered questions in their order
    * so that when back button is click we can go to only the questions user previously answered
    */
@@ -42,10 +46,25 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     this.sliderClass = Ember.String.htmlSafe(`transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`);
   }
 
+  validateCurrentAnswer(){
+    const currQuest = this.model.questions[this.currentQuestionNumber-1];
+    const value = this.answers[currQuest.identifier];
+
+    // check for required fields
+    if((currQuest.required===true || currQuest.required==='true') && (!value && value!=0)){
+      this.error="This question is required"
+      return false;
+    }
+    this.error=""
+    return true;
+  }
+
   /** function to jump to any question number ahead to current question number */
   @action
   jumpForwardToQuestion(qNumber) {
     if (this.currentQuestionNumber < qNumber) {
+      if(!this.validateCurrentAnswer())
+        return;
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(this.currentQuestionNumber + 1);
     }
@@ -55,6 +74,8 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   nextQuestion() {
     if (this.currentQuestionNumber < this.totalQuestions) {
+      if(!this.validateCurrentAnswer())
+        return;
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(this.currentQuestionNumber + 1);
     }
@@ -71,5 +92,9 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   onAnswer(quest, value) {
     this.answers = { ...this.answers, [quest.identifier]: value };
+
+    // go to next page if current question is a single select
+    if(quest.question_type==='multiple-choice' && (quest.multiple===false || quest.multiple==='false'))
+      this.nextQuestion();
   }
 }
