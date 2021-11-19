@@ -14,6 +14,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   /** since its possible to jump we need to keep track of the answered questions in their order
    * so that when back button is click we can go to only the questions user previously answered
    */
+  @tracked
   prevQuestionNumbers = [];
 
   /** getter for the number of questions the current questionnaire has */
@@ -44,7 +45,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   jumpForwardToQuestion(qNumber) {
     if (this.currentQuestionNumber < qNumber) {
-      this.prevQuestionNumbers.push(this.currentQuestionNumber);
+      this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(this.currentQuestionNumber + 1);
     }
   }
@@ -53,7 +54,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   nextQuestion() {
     if (this.currentQuestionNumber < this.totalQuestions) {
-      this.prevQuestionNumbers.push(this.currentQuestionNumber);
+      this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(this.currentQuestionNumber + 1);
     }
   }
@@ -62,7 +63,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   prevQuestion() {
     if (this.prevQuestionNumbers.length)
-      this.slideToQuestion(this.prevQuestionNumbers.pop());
+      this.slideToQuestion(this.prevQuestionNumbers.popObject());
   }
 
   /** sets question answers when an input is changed */
