@@ -52,7 +52,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
     // check for required fields
     if((currQuest.required===true || currQuest.required==='true') && (!value && value!=0)){
-      this.error="This question is required"
+      this.error="Diese Frage ist erforderlich."
       return false;
     }
     this.error=""
