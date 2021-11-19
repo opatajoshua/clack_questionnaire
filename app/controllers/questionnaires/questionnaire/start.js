@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 export default class QuestionnairesQuestionnaireStartController extends Controller {
   /** keeping track of the current number */
   @tracked
-  currentQuestionNumber = 17;
+  currentQuestionNumber = 1;
 
   /** variable to hold all answers */
   @tracked
