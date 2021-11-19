@@ -1,3 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+[type='radio']:checked {
+    background-image: none !important;
+}
+[type='checkbox']:checked {
+    background-size: 16px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjQgMjQiPjxwYXRoIGQ9Ik0xMCAxOGMtLjUgMC0xLS4yLTEuNC0uNmwtNC00Yy0uOC0uOC0uOC0yIDAtMi44LjgtLjggMi4xLS44IDIuOCAwbDIuNiAyLjYgNi42LTYuNmMuOC0uOCAyLS44IDIuOCAwIC44LjguOCAyIDAgMi44bC04IDhjLS40LjQtLjkuNi0xLjQuNnoiIGZpbGw9IiM2OTRjMDAiIGNsYXNzPSJmaWxsLTAwMDAwMCI+PC9wYXRoPjwvc3ZnPg==") !important;
+}
