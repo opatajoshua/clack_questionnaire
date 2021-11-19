@@ -1,0 +1,7 @@
+{{#if isInput}}
+    <input value={{@value}} {{on "input" onChange}} placeholder="Answer" 
+class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent"/>
+{{else}}
+    <Textarea @value={{@value}} {{on "input" onChange}} placeholder="Answer" rows="4"
+class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent"/>
+{{/if}}
