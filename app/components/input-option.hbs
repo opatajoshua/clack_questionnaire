@@ -1,7 +1,7 @@
 {{#if this.isInput}}
     <input value={{@value}} {{on "input" this.onChange}} placeholder="Answer" 
-class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent"/>
+class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent dark:bg-indigo-100 dark:bg-opacity-10 dark:text-gray-100"/>
 {{else}}
     <Textarea @value={{@value}} {{on "input" this.onChange}} placeholder="Answer" rows="4"
-class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent"/>
+class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent dark:bg-indigo-100 dark:bg-opacity-10 dark:text-gray-100"/>
 {{/if}}
