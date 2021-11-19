@@ -9,8 +9,8 @@ const questionnaireExample = {
         identifier: 'list_12110962',
         headline: 'Wen möchtest Du versichern?',
         description: null,
-        required: true,
-        multiple: 'true',
+        required: false,
+        multiple: 'false',
         choices: [
           {
             label: 'Meine Familie mit Kindern',
@@ -152,7 +152,7 @@ const questionnaireExample = {
         identifier: 'list_12110968',
         headline: 'Gehört Dir eine selbstbewohnte Immobilie?',
         description: null,
-        required: true,
+        required: false,
         multiple: 'false',
         choices: [
           {

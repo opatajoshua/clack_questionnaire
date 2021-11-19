@@ -1,7 +1,17 @@
-# clack-questionnaire
+# CLACK Coding Challenge Questionnaire
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a a small questionnaire Web Application. I created a simple mockup to start my development. NB:Developed product looks better than mockup. [Link to mockup](https://www.figma.com/proto/UfuvVLIL5HCJ1WW8jH1BQk/CLACK-Questionnaire?node-id=0%3A1)
+## Completed requirements and extra features
+* <b>Elegant UI Design</b>
+* <b>Dark mode support</b>
+* User can answer questions very swiftly
+* Questionnaire is based on a JSON that the frontend uses to drive the questions
+* A user can go back to a previous question without losing the answers the have given in a current question
+* Mobile First, uses SVG, uses JS ES 6-7 features, good conventions for CSS
+* <b>Questions can be jumped based on answers supplied by user</b>
+* <b>Required fields are validated</b>
+
+NB: all tasks are done
 
 ## Prerequisites
 
