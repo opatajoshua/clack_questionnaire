@@ -8,7 +8,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
    * this will help to find what question number to easily jump to
    * this will be loaded by route's setup controller
   */
-  questionIdAndNumberMap={};
+  questionIdAndNumberMap = {};
 
   /** keeping track of the current number */
   @tracked
@@ -98,8 +98,8 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       let nextQuestNumb = this.currentQuestionNumber + 1
       // check for jumps
       if (this.currentQuestion.jumps && this.currentQuestion.jumps.length && this.currentAnswer) {
-        const jump = this.currentQuestion.jumps.find(e=>e.conditions.find(c=>c.value==this.currentAnswer)!=null)
-        if(jump)
+        const jump = this.currentQuestion.jumps.find(e => e.conditions.find(c => c.value == this.currentAnswer) != null)
+        if (jump)
           nextQuestNumb = this.questionIdAndNumberMap[jump.destination.id]
       }
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
