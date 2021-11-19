@@ -2,10 +2,10 @@
     {{#each @question.choices as |choice|}}
     {{#let (contains @value choice.value) as |isChecked|}}
     <label
-        class="inline-flex items-center md:px-6 md:py-3 px-3 py-2 font-medium text-gray-700 rounded-3xl {{if isChecked 'text-yellow-accent-dark bg-yellow-accent' 'bg-gray-100'}}">
+        class="inline-flex items-center md:px-6 md:py-3 px-3 py-2 font-medium text-gray-700 rounded-3xl {{if isChecked 'text-yellow-accent-dark bg-yellow-accent' 'bg-gray-100 dark:bg-gray-600 dark:text-gray-300'}}">
         <input type="checkbox" name={{cGroupId}} value={{choice.value}} checked={{isChecked}} {{on 'change'
             this.onChange}}
-            class="w-5 h-5 md:w-6 md:h-6 md:mr-3 mr-3 text-yellow-accent rounded-md  ring-2 border-none focus:text-yellow-accent focus:rounded-md focus:ring-yellow-accent-dark focus:border-none {{if isChecked 'ring-yellow-accent-dark' 'ring-gray-700'}}" />
+            class="w-5 h-5 md:w-6 md:h-6 md:mr-3 mr-3 text-yellow-accent rounded-md  ring-2 border-none focus:text-yellow-accent dark:bg-opacity-10 focus:rounded-md focus:ring-yellow-accent-dark focus:border-none {{if isChecked 'ring-yellow-accent-dark' 'ring-gray-700'}}" />
         {{choice.label}}
     </label>
     {{/let}}

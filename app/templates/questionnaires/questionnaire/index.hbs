@@ -1,7 +1,7 @@
 {{page-title "Index"}}
 <div class="flex flex-col items-center">
     <img src="/svgs/questionnaires_landing_image.svg" alt="display-image" class="w-60 md:w-96 max-w-full mt-10 md:mt-20">
-    <p class="md:text-center w-full text-2xl md:text-4xl font-semibold mt-10 md:mt-20">{{model.name}}</p>
+    <p class="md:text-center w-full text-2xl md:text-4xl font-semibold mt-10 md:mt-20 dark:text-gray-300">{{model.name}}</p>
     <p class="md:text-center w-full mt-3 text-gray-500">{{model.description}}</p>
     <p class="md:text-center w-full mt-8 text-gray-500"><b>Sie sind 25 Fragen</b>. Klicken Sie auf Start, wenn Sie bereit sind</p>
     <LinkTo @route="questionnaires.questionnaire.start" @model={{model}} class="bg-indigo-500 hover:bg-indigo-600 shadow-md px-16 py-3 mt-10 flex items-center text-white font-normal rounded-md">

@@ -1,10 +1,10 @@
 <fieldset id={{rGroupId}} class="flex flex-col space-y-3 md:space-y-4 px-1">
     {{#each @question.choices as |choice|}}
     <label
-        class="inline-flex items-center md:px-6 md:py-3 px-3 py-2 rounded-3xl {{if (eq @value choice.value) 'text-yellow-accent-dark bg-yellow-accent' 'bg-gray-100'}}">
+        class="inline-flex items-center md:px-6 md:py-3 px-3 py-2 rounded-3xl {{if (eq @value choice.value) 'text-yellow-accent-dark bg-yellow-accent' 'bg-gray-100 dark:bg-gray-600 dark:text-gray-300'}}">
         <input type="radio" name={{rGroupId}} value={{choice.value}} checked={{eq @value choice.value}} {{on 'change'
             this.onChange}}
-            class="w-6 h-6 md:mr-3 mr-2 text-yellow-accent-dark ring-inset ring-4 ring-white focus:ring-inset focus:ring-yellow-accent focus:ring-opacity-10 focus:border-opacity-25 border-2" />
+            class="w-6 h-6 md:mr-3 mr-2 text-yellow-accent-dark ring-inset ring-4 ring-white dark:bg-opacity-10 focus:ring-inset focus:ring-yellow-accent focus:ring-opacity-10 focus:border-opacity-25 border-2" />
         {{choice.label}}
     </label>
     {{/each}}
