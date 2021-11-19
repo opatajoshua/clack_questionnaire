@@ -99,7 +99,8 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       // check for jumps
       if (this.currentQuestion.jumps && this.currentQuestion.jumps.length && this.currentAnswer) {
         const jump = this.currentQuestion.jumps.find(e=>e.conditions.find(c=>c.value==this.currentAnswer)!=null)
-        nextQuestNumb = this.questionIdAndNumberMap[jump.destination.id]
+        if(jump)
+          nextQuestNumb = this.questionIdAndNumberMap[jump.destination.id]
       }
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(nextQuestNumb);
