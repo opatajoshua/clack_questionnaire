@@ -42,6 +42,15 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     return (this.currentQuestionNumber / this.totalQuestions) * 100;
   }
 
+  /** getter for current question*/
+  get currentQuestion() {
+    return this.model.questions[this.currentQuestionNumber - 1];
+  }
+
+  /** gets answer for current question*/
+  get currentAnswer() {
+    return this.currentQuestion ? this.answers[this.currentQuestion.identifier] : null;
+  }
 
   /** main function that controls the slider*/
   slideToQuestion(qNumber) {
@@ -51,16 +60,6 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     }
     this.currentQuestionNumber = qNumber;
     this.sliderClass = Ember.String.htmlSafe(`transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`);
-  }
-
-  /** getter for current question*/
-  get currentQuestion() {
-    return this.model.questions[this.currentQuestionNumber - 1];
-  }
-
-  /** gets answer for current question*/
-  get currentAnswer() {
-    return this.currentQuestion ? this.answers[this.currentQuestion.identifier] : null;
   }
 
   /** validates answer for the current question*/
