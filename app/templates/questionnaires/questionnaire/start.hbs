@@ -37,7 +37,7 @@
             {{/if}}
             <button {{on 'click' this.nextQuestion }}
                 class="bg-indigo-500 hover:bg-indigo-600 shadow-md px-16 py-3 flex items-center text-white font-normal rounded-md">
-                Nächste
+                {{if this.isLastQuestion 'Beenden' 'Nächste'}}
                 <svg class="ml-2 h-5" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                     <g data-name="Layer 2">
                         <path

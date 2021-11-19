@@ -2,12 +2,17 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { set } from '@ember/object';
 
 export default class QuestionnairesQuestionnaireStartController extends Controller {
+  @service router;
+  @service questionnaireSession;
+
   /** a map of the loaded question's ids and their number we can jump to
    * this will help to find what question number to easily jump to
    * this will be loaded by route's setup controller
-  */
+   */
   questionIdAndNumberMap = {};
 
   /** keeping track of the current number */
@@ -20,7 +25,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
   /** variable to hold error message */
   @tracked
-  error = "";
+  error = '';
 
   /** since its possible to jump we need to keep track of the answered questions in their order
    * so that when back button is click we can go to only the questions user previously answered
@@ -49,7 +54,14 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
   /** gets answer for current question*/
   get currentAnswer() {
-    return this.currentQuestion ? this.answers[this.currentQuestion.identifier] : null;
+    return this.currentQuestion
+      ? this.answers[this.currentQuestion.identifier]
+      : null;
+  }
+
+  /** returns true if current question is the last question*/
+  get isLastQuestion() {
+    return this.currentQuestionNumber == this.totalQuestions;
   }
 
   /** main function that controls the slider*/
@@ -59,20 +71,26 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       return;
     }
     this.currentQuestionNumber = qNumber;
-    this.sliderClass = Ember.String.htmlSafe(`transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`);
+    this.sliderClass = Ember.String.htmlSafe(
+      `transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`
+    );
   }
 
   /** validates answer for the current question*/
   validateCurrentAnswer() {
-    if (!this.currentQuestion)
-      return false;
+    if (!this.currentQuestion) return false;
 
     // check for required fields
-    if ((this.currentQuestion.required === true || this.currentQuestion.required === 'true') && (!this.currentAnswer && this.currentAnswer != 0)) {
-      this.error = "Diese Frage ist erforderlich."
+    if (
+      (this.currentQuestion.required === true ||
+        this.currentQuestion.required === 'true') &&
+      !this.currentAnswer &&
+      this.currentAnswer != 0
+    ) {
+      this.error = 'Diese Frage ist erforderlich.';
       return false;
     }
-    this.error = ""
+    this.error = '';
     return true;
   }
 
@@ -80,8 +98,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   jumpForwardToQuestion(qNumber) {
     if (this.currentQuestionNumber < qNumber) {
-      if (!this.validateCurrentAnswer())
-        return;
+      if (!this.validateCurrentAnswer()) return;
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(this.currentQuestionNumber + 1);
     }
@@ -91,18 +108,32 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   nextQuestion() {
     if (this.currentQuestionNumber < this.totalQuestions) {
-      if (!this.validateCurrentAnswer())
-        return;
+      if (!this.validateCurrentAnswer()) return;
 
-      let nextQuestNumb = this.currentQuestionNumber + 1
+      let nextQuestNumb = this.currentQuestionNumber + 1;
       // check for jumps
-      if (this.currentQuestion.jumps && this.currentQuestion.jumps.length && this.currentAnswer) {
-        const jump = this.currentQuestion.jumps.find(e => e.conditions.find(c => c.value == this.currentAnswer) != null)
+      if (
+        this.currentQuestion.jumps &&
+        this.currentQuestion.jumps.length &&
+        this.currentAnswer
+      ) {
+        const jump = this.currentQuestion.jumps.find(
+          (e) => e.conditions.find((c) => c.value == this.currentAnswer) != null
+        );
         if (jump)
-          nextQuestNumb = this.questionIdAndNumberMap[jump.destination.id]
+          nextQuestNumb = this.questionIdAndNumberMap[jump.destination.id];
       }
       this.prevQuestionNumbers.pushObject(this.currentQuestionNumber);
       this.slideToQuestion(nextQuestNumb);
+    }
+    // else if moving from last question then we are done
+    else if (this.isLastQuestion) {
+      this.questionnaireSession.currentFilledQuestionnaire = this.model;
+      this.questionnaireSession.currentFilledQuestionnaireAnswers = this.answers;
+      this.router.transitionTo(
+        'questionnaires.questionnaire.complete',
+        this.model
+      );
     }
   }
 
@@ -116,10 +147,13 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   /** sets question answers when an input is changed */
   @action
   onAnswer(quest, value) {
-    this.answers = { ...this.answers, [quest.identifier]: value };
-
+    set(this.answers, quest.identifier, value);
+    
     // go to next page if current question is a single select
-    if (quest.question_type === 'multiple-choice' && (quest.multiple === false || quest.multiple === 'false'))
+    if (
+      quest.question_type === 'multiple-choice' &&
+      (quest.multiple === false || quest.multiple === 'false')
+    )
       this.nextQuestion();
   }
 }

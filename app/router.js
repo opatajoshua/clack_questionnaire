@@ -10,6 +10,7 @@ Router.map(function () {
   this.route('questionnaires', function () {
     this.route('questionnaire', { path: '/:questionnaire_id' }, function () {
       this.route('start');
+      this.route('complete');
     });
   });
 });
