@@ -1,0 +1,11 @@
+<div class="w-full min-w-full h-auto">
+    <div class="">
+        <p class="text-center w-full mt-3 text-3xl md:text-4xl font-semibold text-gray-700">{{@question.headline}}</p>
+        <p class="text-center w-full mt-2 text-gray-500">{{description}}</p>
+    </div>
+
+    {{!-- options --}}
+    <div class="mt-10">
+        {{component optionComponentName question=@question value=@value onChange=@onChange}}
+    </div>
+</div>
