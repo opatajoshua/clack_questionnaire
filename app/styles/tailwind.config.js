@@ -1,11 +1,19 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'yellow-accent-dark': '#694C00',
+        'yellow-accent': '#F0DFB3',
+      },
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['checked'],
+      borderColor: ['checked'],
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
