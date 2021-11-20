@@ -2,25 +2,22 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { textQuestion } from '../../test-data/questions';
 
 module('Integration | Component | input-option', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('quest', { ...textQuestion });
+    await render(hbs`<InputOption @question={{this.quest}}/>`);
+    let inputEl = this.element;
 
-    await render(hbs`<InputOption />`);
+    // expecting  an input when question_type is text and multiline is false
+    this.set('quest', { ...textQuestion, multiline: false });
+    assert.equal(inputEl.querySelectorAll('input').length, 1, `expecting a input box when question_type=text and multiline is false`);
 
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <InputOption>
-        template block text
-      </InputOption>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    // expecting  a textarea when question_type is text and multiline is true
+    this.set('quest', { ...textQuestion, multiline: true });
+    assert.equal(inputEl.querySelectorAll('textarea').length, 1, `expecting a textarea when question_type=text and multiline is true`);
   });
 });

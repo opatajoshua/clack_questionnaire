@@ -6,21 +6,20 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | progress-bar', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('testing progress-bar percentage styles', async function (assert) {
 
-    await render(hbs`<ProgressBar />`);
+    // test beginning progress
+    this.set('progress', 0);
+    await render(hbs`<ProgressBar @value={{this.progress}} />`);
+    let progressEl = this.element.querySelector('[data-test-progress]');
+    assert.equal(progressEl.getAttribute('style'), 'width: 0%', 'starts at 0%');
 
-    assert.dom(this.element).hasText('');
+    // test at 50%
+    this.set('progress', 50);
+    assert.equal(progressEl.getAttribute('style'), 'width: 50%', 'at 50%');
 
-    // Template block usage:
-    await render(hbs`
-      <ProgressBar>
-        template block text
-      </ProgressBar>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    // test at 100% completion
+    this.set('progress', 100);
+    assert.equal(progressEl.getAttribute('style'), 'width: 100%', 'ends at 100%');
   });
 });

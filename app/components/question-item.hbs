@@ -1,7 +1,7 @@
-<div class="w-full min-w-full h-auto">
+<div data-test-question-item class="w-full min-w-full h-auto">
     <div class="">
-        <p class="text-center w-full mt-3 text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-400">{{@question.headline}}</p>
-        <p class="text-center w-full mt-2 text-gray-500">{{this.description}}</p>
+        <p data-test-question-item-title class="text-center w-full mt-3 text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-400">{{@question.headline}}</p>
+        <p data-test-question-item-desc class="text-center w-full mt-2 text-gray-500">{{this.description}}</p>
     </div>
 
     {{!-- options --}}

@@ -7,20 +7,15 @@ module('Integration | Component | dark-mode-toggle', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    let darkModeService = this.owner.lookup('service:dark-mode');
 
+    // test for dark mode label
+    darkModeService.inDarkMode=true;
     await render(hbs`<DarkModeToggle />`);
+    assert.dom(this.element).hasText('Light mode');
 
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <DarkModeToggle>
-        template block text
-      </DarkModeToggle>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    darkModeService.inDarkMode=false;
+    await render(hbs`<DarkModeToggle />`);
+    assert.dom(this.element).hasText('Dark mode');
   });
 });
