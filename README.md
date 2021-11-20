@@ -1,4 +1,4 @@
-# CLACK Coding Challenge Questionnaire
+# CLACK Coding Challenge Questionnaire (EmberJs)
 
 This is a a small questionnaire Web Application. I created a simple mockup to start my development. NB:Developed product looks better than mockup. [Link to mockup](https://www.figma.com/proto/UfuvVLIL5HCJ1WW8jH1BQk/CLACK-Questionnaire?node-id=0%3A1)
 ## Completed requirements and extra features
