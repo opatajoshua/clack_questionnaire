@@ -13,6 +13,12 @@ This is a a small questionnaire Web Application. I created a simple mockup to st
 
 NB: all tasks are done
 
+## major integration tests
+* tests/integration/components/question-item-test.js
+* tests/integration/components/progress-bar-test.js
+* tests/integration/components/input-option-test.js
+* rest of components and the 'contains' helper
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
