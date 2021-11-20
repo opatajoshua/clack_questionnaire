@@ -10,6 +10,7 @@ This is a a small questionnaire Web Application. I created a simple mockup to st
 * Mobile First, uses SVG, uses JS ES 6-7 features, good conventions for CSS
 * <b>Questions can be jumped based on answers supplied by user</b>
 * <b>Required fields are validated</b>
+* Tests for components
 
 NB: all tasks are done
 
