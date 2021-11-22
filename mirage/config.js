@@ -1,16 +1,7 @@
 export default function () {
-  // These comments are here to help you get started. Feel free to delete them.
-
-  /*
-    Config (with defaults).
-
-    Note: these only affect routes defined *after* them!
-  */
-
-  // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
-  // this.namespace = '';    // make this `/api`, for example, if your API is namespaced
-  // this.timing = 400;      // delay for each request, automatically set to 0 during testing
-
+  /** the only request we make so far: /questionnaires/:id
+   * we will be using a JSONSerializer for ember data
+   */
   this.get('/questionnaires/:id', () => {
     return {
       id: 40,
@@ -516,6 +507,20 @@ export default function () {
         'Pri\u0026shy;vat\u0026shy;haft\u0026shy;pflicht',
     };
   });
+
+
+  // These comments are here to help you get started. Feel free to delete them.
+
+  /*
+    Config (with defaults).
+
+    Note: these only affect routes defined *after* them!
+  */
+
+  // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
+  // this.namespace = '';    // make this `/api`, for example, if your API is namespaced
+  // this.timing = 400;      // delay for each request, automatically set to 0 during testing
+
 
   /*
     Shorthand cheatsheet:
