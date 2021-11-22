@@ -11,6 +11,7 @@ This is a a small questionnaire Web Application. I created a simple mockup to st
 * <b>Questions can be jumped based on answers supplied by user</b>
 * <b>Required fields are validated</b>
 * Tests for components
+* <b>Uses Ember Data with Mirage</b>
 
 NB: all tasks are done
 
