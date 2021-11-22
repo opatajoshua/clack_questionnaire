@@ -14,7 +14,7 @@ export default function () {
           headline: 'Wen möchtest Du versichern?',
           description: null,
           required: false,
-          multiple: 'false',
+          multiple: true,
           choices: [
             {
               label: 'Meine Familie mit Kindern',
@@ -70,7 +70,7 @@ export default function () {
           identifier: 'list_12111777',
           headline: 'Möchtest Du eine Forderungsausfalldeckung absichern?',
           description: null,
-          required: false,
+          required: true,
           multiple: 'false',
           choices: [
             {
