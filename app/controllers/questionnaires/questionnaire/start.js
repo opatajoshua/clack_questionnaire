@@ -15,6 +15,11 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
    */
   questionIdAndNumberMap = {};
 
+  /** variable to hold the scroll element (the wrapper div with overflow-y:auto which wraps progress-bar, the questions, and info)
+   * this will be called to scroll to top on every question slide since the user can scroll down one question before moving to next
+  */
+  scrollElement = null;
+
   /** keeping track of the current number */
   @tracked
   currentQuestionNumber = 1;
@@ -74,6 +79,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     this.sliderClass = Ember.String.htmlSafe(
       `transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`
     );
+    this.scrollElement.scrollTop = '0px';
   }
 
   /** validates answer for the current question*/
@@ -92,6 +98,13 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     }
     this.error = '';
     return true;
+  }
+
+  /** setScrollElement set the slide dom element so we can scroll to top*/
+  @action
+  setScrollElement(element) {
+    this.scrollElement = element;
+    console.log('scrollElement', this.scrollElement);
   }
 
   /** function to jump to any question number ahead to current question number */

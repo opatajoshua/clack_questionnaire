@@ -1,15 +1,16 @@
 {{page-title "Start"}}
 <div class="flex-1 flex flex-col overflow-y-auto">
     <div class="flex flex-col overflow-y-auto max-h-full">
-        <div class="overflow-y-auto">
+        <div class="overflow-y-auto" {{did-insert this.setScrollElement}}>
             <div class="container max-w-screen-lg mx-auto px-6 lg:px-0 flex-1">
                 <div class="md:h-12 h-5"></div>
                 <div class="sticky top-0 z-10 bg-white dark:bg-gray-900">
                     <div class="flex justify-between text-sm">
-                        <p class="mb-1 text-gray-500">Frage {{this.currentQuestionNumber}}/{{this.model.questions.length}}
+                        <p class="mb-1 text-gray-500">Frage
+                            {{this.currentQuestionNumber}}/{{this.model.questions.length}}
                         </p>
-                        {{#if currentQuestion.required}}
-                            <p class="m-0 text-gray-500">required*</p>
+                        {{#if this.currentQuestion.required}}
+                        <p class="m-0 text-gray-500">required*</p>
                         {{/if}}
                     </div>
                     <ProgressBar @value={{this.progress}} />
