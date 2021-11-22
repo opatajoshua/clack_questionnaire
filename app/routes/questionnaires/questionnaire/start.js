@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
 import Ember from 'ember';
 
+/**
+ * Router for answering question
+ */
 export default class QuestionnairesQuestionnaireStartRoute extends Route {
   setupController(controller, model) {
     super.setupController(controller, model);
