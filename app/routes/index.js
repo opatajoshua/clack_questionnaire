@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   @service router;
-  
+
   beforeModel() {
     this.router.transitionTo('questionnaires.questionnaire', 40);
   }

@@ -129,7 +129,8 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     // else if moving from last question then we are done
     else if (this.isLastQuestion) {
       this.questionnaireSession.currentFilledQuestionnaire = this.model;
-      this.questionnaireSession.currentFilledQuestionnaireAnswers = this.answers;
+      this.questionnaireSession.currentFilledQuestionnaireAnswers =
+        this.answers;
       this.router.transitionTo(
         'questionnaires.questionnaire.complete',
         this.model
@@ -148,7 +149,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   onAnswer(quest, value) {
     set(this.answers, quest.identifier, value);
-    
+
     // go to next page if current question is a single select
     if (
       quest.question_type === 'multiple-choice' &&

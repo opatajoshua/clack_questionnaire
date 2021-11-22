@@ -7,7 +7,6 @@ module('Integration | Component | progress-bar', function (hooks) {
   setupRenderingTest(hooks);
 
   test('testing progress-bar percentage styles', async function (assert) {
-
     // test beginning progress
     this.set('progress', 0);
     await render(hbs`<ProgressBar @value={{this.progress}} />`);
@@ -20,6 +19,10 @@ module('Integration | Component | progress-bar', function (hooks) {
 
     // test at 100% completion
     this.set('progress', 100);
-    assert.equal(progressEl.getAttribute('style'), 'width: 100%', 'ends at 100%');
+    assert.equal(
+      progressEl.getAttribute('style'),
+      'width: 100%',
+      'ends at 100%'
+    );
   });
 });

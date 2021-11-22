@@ -10,11 +10,11 @@ module('Integration | Component | dark-mode-toggle', function (hooks) {
     let darkModeService = this.owner.lookup('service:dark-mode');
 
     // test for dark mode label
-    darkModeService.inDarkMode=true;
+    darkModeService.inDarkMode = true;
     await render(hbs`<DarkModeToggle />`);
     assert.dom(this.element).hasText('Light mode');
 
-    darkModeService.inDarkMode=false;
+    darkModeService.inDarkMode = false;
     await render(hbs`<DarkModeToggle />`);
     assert.dom(this.element).hasText('Dark mode');
   });
