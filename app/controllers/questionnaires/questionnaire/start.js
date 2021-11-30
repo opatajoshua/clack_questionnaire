@@ -88,11 +88,13 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
     // check for required fields
     if (
+      // if its required
       (this.currentQuestion.required === true ||
-        this.currentQuestion.required === 'true') &&
-      !this.currentAnswer &&
-      this.currentAnswer != 0
-    ) {
+        this.currentQuestion.required === 'true') 
+        &&
+      // but no answer provided
+      (!this.currentAnswer || !this.currentAnswer.length) ) {
+      // then we display an error
       this.error = 'Diese Frage ist erforderlich.';
       return false;
     }
