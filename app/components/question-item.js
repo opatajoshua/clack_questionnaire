@@ -22,7 +22,9 @@ export default class QuestionItemComponent extends Component {
     return 'unknown-question-type';
   }
 
-  get isCurrentQuestion(){
-    return this.args.question.identifier === this.args.currentQuestion.identifier;
+  get isCurrentQuestion() {
+    return (
+      this.args.question.identifier === this.args.currentQuestion.identifier
+    );
   }
 }

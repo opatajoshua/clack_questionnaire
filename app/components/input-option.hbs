@@ -1,7 +1,7 @@
 {{#if this.isInput}}
-    <input value={{@value}} {{on "input" this.onChange}} placeholder="Answer"  tabindex={{if @isCurrentQuestion 0 -1}} autofocus
+    <input value={{@value}} {{on "input" this.onChange}} placeholder="Answer"  tabindex={{if @isCurrentQuestion 1 -1}} autofocus
 class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent dark:bg-indigo-300 dark:bg-opacity-20 dark:text-gray-300"/>
 {{else}}
-    <Textarea @value={{@value}} {{on "input" this.onChange}} placeholder="Answer" rows="4"  tabindex={{if @isCurrentQuestion 0 -1}} autofocus
+    <Textarea @value={{@value}} {{on "input" this.onChange}} placeholder="Answer" rows="4"  tabindex={{if @isCurrentQuestion 1 -1}} autofocus
 class="rounded-md border-2 border-gray-400 px-5 py-4 w-full focus:border-yellow-accent focus:ring-transparent dark:bg-indigo-300 dark:bg-opacity-20 dark:text-gray-300"/>
 {{/if}}

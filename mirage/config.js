@@ -411,8 +411,7 @@ export default function () {
         {
           question_type: 'multiple-choice',
           identifier: 'list_12111717',
-          headline:
-            'Hast Du aktuell schon eine Privathaftpflichtversicherung?',
+          headline: 'Hast Du aktuell schon eine Privathaftpflichtversicherung?',
           description: null,
           required: false,
           multiple: 'false',
@@ -518,7 +517,6 @@ export default function () {
     };
   });
 
-
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
@@ -530,7 +528,6 @@ export default function () {
   // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
   // this.namespace = '';    // make this `/api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
-
 
   /*
     Shorthand cheatsheet:

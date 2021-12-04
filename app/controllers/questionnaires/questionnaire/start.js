@@ -17,7 +17,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
 
   /** variable to hold the scroll element (the wrapper div with overflow-y:auto which wraps progress-bar, the questions, and info)
    * this will be called to scroll to top on every question slide since the user can scroll down one question before moving to next
-  */
+   */
   scrollElement = null;
 
   /** keeping track of the current number */
@@ -69,6 +69,29 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     return this.currentQuestionNumber == this.totalQuestions;
   }
 
+  /** submit button tabIndex is the length of the question choices + 1*/
+  get submitTabIndex() {
+    return this.currentQuestion.choices
+      ? this.currentQuestion.choices.length + 1
+      : 2;
+  }
+
+  /** back button tabIndex is submitTabIndex + 1*/
+  get backTabIndex() {
+    return this.submitTabIndex + 1;
+  }
+
+  /** puts focus back on current question*/
+  focusCurrentQuestion() {
+    const questDiv = document.getElementById(
+      'quest_' + this.currentQuestion.identifier
+    );
+    const input =
+      questDiv.querySelector('input') || questDiv.querySelector('textarea');
+    console.log('input', input);
+    // input.focus();
+  }
+
   /** main function that controls the slider*/
   slideToQuestion(qNumber) {
     if (qNumber > this.totalQuestions) {
@@ -80,6 +103,10 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       `transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`
     );
     this.scrollElement.scrollTop = '0px';
+    // wait after currentQuestionNumber change render
+    // setTimeout(() => {
+    this.focusCurrentQuestion();
+    // }, 50);
   }
 
   /** validates answer for the current question*/
@@ -90,12 +117,13 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     if (
       // if its required
       (this.currentQuestion.required === true ||
-        this.currentQuestion.required === 'true') 
-        &&
+        this.currentQuestion.required === 'true') &&
       // but no answer provided
-      (!this.currentAnswer || !this.currentAnswer.length) ) {
+      (!this.currentAnswer || !this.currentAnswer.length)
+    ) {
       // then we display an error
       this.error = 'Diese Frage ist erforderlich.';
+      this.focusCurrentQuestion();
       return false;
     }
     this.error = '';
