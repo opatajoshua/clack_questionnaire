@@ -106,7 +106,6 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   setScrollElement(element) {
     this.scrollElement = element;
-    console.log('scrollElement', this.scrollElement);
   }
 
   /** function to jump to any question number ahead to current question number */

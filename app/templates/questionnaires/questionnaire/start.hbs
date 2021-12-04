@@ -20,7 +20,7 @@
                 <div class="overflow-hidden mt-4 md:mt-14 mb-10">
                     <div class="w-full flex transition-all duration-500 ease-in-out" style="{{this.sliderClass}}">
                         {{#each this.model.questions as |quest|}}
-                        <QuestionItem @question={{quest}} @value={{(get this.answers (get quest 'identifier' ) )}}
+                        <QuestionItem @question={{quest}} @currentQuestion={{this.currentQuestion}} @value={{(get this.answers (get quest 'identifier' ) )}}
                             @onChange={{fn this.onAnswer quest}} />
                         {{/each}}
                     </div>
@@ -29,9 +29,9 @@
         </div>
 
         {{!-- control buttons --}}
-        <div class="flex justify-between container max-w-screen-lg mx-auto px-6 lg:px-0">
+        <div class="flex justify-between container max-w-screen-lg mx-auto px-6 lg:px-0 pt-2">
             {{#if this.prevQuestionNumbers.length }}
-            <button {{on 'click' this.prevQuestion }}
+            <button {{on 'click' this.prevQuestion }} tabindex="1"
                 class="bg-indigo-200 hover:bg-indigo-300 shadow-sm px-5 py-3 flex items-center text-white font-normal rounded-md">
                 <svg class="h-5" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -43,8 +43,8 @@
             <div>
             </div>
             {{/if}}
-            <button {{on 'click' this.nextQuestion }}
-                class="bg-indigo-500 hover:bg-indigo-600 shadow-md px-16 py-3 flex items-center text-white font-normal rounded-md">
+            <button {{on 'click' this.nextQuestion }} tabindex="0"
+                class="bg-indigo-500 hover:bg-indigo-600 shadow-md px-16 py-3 flex items-center text-white font-normal rounded-md focus:outline-black">
                 {{if this.isLastQuestion 'Beenden' 'Nächste'}}
                 <svg class="ml-2 h-5" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                     <g data-name="Layer 2">

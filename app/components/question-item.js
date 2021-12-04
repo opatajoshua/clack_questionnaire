@@ -21,4 +21,8 @@ export default class QuestionItemComponent extends Component {
     if (this.args.question.question_type == 'text') return 'input-option';
     return 'unknown-question-type';
   }
+
+  get isCurrentQuestion(){
+    return this.args.question.identifier === this.args.currentQuestion.identifier;
+  }
 }
