@@ -9,6 +9,27 @@ export default function () {
       name: 'Privathaftpflichtversicherung',
       questions: [
         {
+          question_type: 'multiple-choice',
+          identifier: 'list_121116103333',
+          headline: 'Bist Du Beamter oder im öffentlichen Dienst angestellt?',
+          description: null,
+          required: false,
+          multiple: 'false',
+          choices: [
+            {
+              label: 'Ja',
+              value: 'Ja',
+              selected: false,
+            },
+            {
+              label: 'Nein',
+              value: 'Nein',
+              selected: false,
+            },
+          ],
+          jumps: [],
+        },
+        {
           question_type: 'text',
           identifier: 'textarea_1211097911',
           headline:

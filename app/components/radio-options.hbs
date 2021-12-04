@@ -2,10 +2,12 @@
     {{#each @question.choices as |choice index|}}
     <label
         class="inline-flex items-center md:px-6 md:py-3 px-4 py-3 text-base md:text-lg font-medium text-gray-700 rounded-3xl {{if (eq @value choice.value) 'text-yellow-accent-dark bg-yellow-accent dark:bg-opacity-80' 'bg-gray-100 dark:bg-indigo-300 dark:bg-opacity-20 dark:text-gray-300'}}">
-        <input type="radio" name={{this.rGroupId}} value={{choice.value}} checked={{eq @value choice.value}} tabindex={{if @isCurrentQuestion (add index 1) -1}} {{on 'change'
-            this.onChange}}
-            class="w-6 h-6 md:mr-3 mr-2 text-yellow-accent-dark ring-inset ring-4 ring-white dark:bg-opacity-10 focus:ring-inset focus:ring-yellow-accent focus:ring-opacity-10 focus:border-opacity-25 border-2" />
+        <input type="radio" name={{this.rGroupId}} value={{choice.value}} checked={{eq @value choice.value}} tabindex={{if @isCurrentQuestion (add index 1) -1}}
+            {{on 'click' this.onClick}} {{on 'keyup' this.onKeyUp}}
+            class="w-6 h-6 md:mr-3 mr-2 dark:text-yellow-accent-dark dark:focus:ring-inset dark:focus:ring-8 dark:focus:ring-yellow-accent-dark 
+                text-yellow-accent-dark focus:ring-inset focus:ring-yellow-accent-dark " />
         {{choice.label}}
     </label>
     {{/each}}
 </fieldset>
+{{!-- text-yellow-accent-dark ring-white ring-4 ring-inset focus:ring-4 focus:ring-yellow-accent-dark dark:bg-opacity-10 focus:ring-offset-2 focus:ring-offset-yellow-accent dark:focus:ring-offset-yellow-300 --}}

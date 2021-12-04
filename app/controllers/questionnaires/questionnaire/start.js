@@ -88,8 +88,8 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     );
     const input =
       questDiv.querySelector('input') || questDiv.querySelector('textarea');
-    console.log('input', input);
-    // input.focus();
+    // console.log('input', input);
+    input.focus();
   }
 
   /** main function that controls the slider*/
@@ -103,10 +103,6 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
       `transform: translate3d(-${100 * (qNumber - 1)}%, 0, 0)`
     );
     this.scrollElement.scrollTop = '0px';
-    // wait after currentQuestionNumber change render
-    // setTimeout(() => {
-    this.focusCurrentQuestion();
-    // }, 50);
   }
 
   /** validates answer for the current question*/
@@ -123,6 +119,7 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
     ) {
       // then we display an error
       this.error = 'Diese Frage ist erforderlich.';
+      // refocus when we get error
       this.focusCurrentQuestion();
       return false;
     }
@@ -134,6 +131,15 @@ export default class QuestionnairesQuestionnaireStartController extends Controll
   @action
   setScrollElement(element) {
     this.scrollElement = element;
+
+    // initial question focus
+    this.focusCurrentQuestion();
+
+    // we need for refocus whenever we done with sliding
+    const slideEl = document.querySelector('#slide-el');
+    slideEl.ontransitionend = () => {
+      this.focusCurrentQuestion();
+    };
   }
 
   /** function to jump to any question number ahead to current question number */
